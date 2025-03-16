@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty - Mulund College of Commerce</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Home Button */
+.home-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.home-button a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-button:hover {
+  background-color: #34495e;
+}
+
+/* Faculty Page */
+.faculty-page {
+  padding: 20px;
+  margin-top: 80px; /* To avoid overlap with the Home button */
+}
+
+.faculty-page h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Faculty Grid */
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Faculty Card */
+.faculty-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faculty-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.faculty-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.faculty-details {
+  text-align: center;
+}
+
+.faculty-details h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.faculty-details p {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.faculty-details p strong {
+  color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faculty-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Home Button -->
+  <div class="home-button">
+    <a href="root.html"><i class="fas fa-home"></i> Home</a>
+  </div>
+
+  <!-- Faculty Page Content -->
+  <div class="faculty-page">
+    <h1>Our Faculty</h1>
+    <div class="faculty-grid">
+      <!-- Faculty Card 1 -->
+      <div class="faculty-card">
+        <img src="images/hiren_sir.png" alt="Faculty Photo" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Hiren Dand</h2>
+          <p><strong>Designation:</strong> Co-ordinator</p>
+          <p><strong>Teaching Experience:</strong> 28 Years</p>
+          <p><strong>Email:</strong> hiren.dand@mccmulund.ac.in</p>
+        </div>
+      </div>
+
+      <!-- Faculty Card 2 -->
+      <div class="faculty-card">
+        <img src="images/jyotika_mam.png" alt="Faculty Photo" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Jyotika Chheda</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Teaching Experience:</strong> 14 Years</p>
+          <p><strong>Email:</strong> jyotika.chheda@mccmulund.ac.in</p>
+        </div>
+      </div>
+
+      <!-- Faculty Card 3 -->
+      <div class="faculty-card">
+        <img src="images/vishal_sir.png" alt="Faculty Photo" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Vishal Borude</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Teaching Experience:</strong> 10 Years</p>
+          <p><strong>Email:</strong> vishal.borude@mccmulund.ac.in </p>
+        </div>
+      </div>
+
+      <!-- Faculty Card 4 -->
+      <div class="faculty-card">
+        <img src="images/priti_mam.png" alt="Faculty Photo" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Priti Pathak</h2>
+          <p><strong>Designation:</strong>Assistant Professor</p>
+          <p><strong>Teaching Experience:</strong> 13 Years</p>
+          <p><strong>Email:</strong> priti.pathak@mccmulund.ac.in</p>
+        </div>
+      </div>
+
+      <!-- Faculty Card 5 -->
+      <div class="faculty-card">
+        <img src="images/ujjwala_mam.png" alt="Faculty Photo" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Ujwal Sharma</h2>
+          <p><strong>Designation:</strong>Assistant Professor</p>
+          <p><strong>Teaching Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong>ujwala180762@mccmulund.ac.in </p>
+        </div>
+      </div>
+
+      <!-- Faculty Card 6 -->
+      <div class="faculty-card">
+        <img src="images/siddhesh_sir.png" alt="Faculty Photo" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Mr.Siddhesh Gotekar</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Teaching Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> gotekarsiddhesh@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

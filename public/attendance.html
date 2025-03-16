@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance - Mulund College of Commerce</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Home Button */
+.home-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.home-button a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-button:hover {
+  background-color: #34495e;
+}
+
+/* Attendance Page */
+.attendance-page {
+  padding: 20px;
+  margin-top: 80px; /* To avoid overlap with the Home button */
+}
+
+.attendance-page h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Cards Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card Styles */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.card p {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #ff6f61;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.progress-bar-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Home Button -->
+  <div class="home-button">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  </div>
+
+  <!-- Attendance Page Content -->
+  <div class="attendance-page">
+    <h1>Student Attendance</h1>
+
+    <!-- Cards Container -->
+    <div class="cards-container" id="cards-container">
+      <!-- Cards will be dynamically generated here -->
+    </div>
+  </div>
+
+  <script>
+    // Fetch attendance data from assets/attendance.json
+fetch('assets/attendance.json')
+  .then(response => response.json())
+  .then(data => {
+    const students = data.Sheet1.filter(student => student !== null); // Remove null entries
+    const cardsContainer = document.getElementById('cards-container');
+
+    // Generate cards for each student
+    students.forEach(student => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+
+      // Roll Number
+      const rollNo = document.createElement('h2');
+      rollNo.textContent = `Roll No: ${student['ROLL NO']}`;
+      card.appendChild(rollNo);
+
+      // Name
+      const name = document.createElement('p');
+      name.textContent = student['NAME OF THE STUDENT'];
+      card.appendChild(name);
+
+      // Attendance Percentage
+      const attendancePercentage = student.Total.toFixed(2); // Round to 2 decimal places
+      const progressBar = document.createElement('div');
+      progressBar.classList.add('progress-bar');
+
+      const progressBarFill = document.createElement('div');
+      progressBarFill.classList.add('progress-bar-fill');
+      progressBarFill.style.width = `${attendancePercentage}%`;
+
+      const progressBarText = document.createElement('div');
+      progressBarText.classList.add('progress-bar-text');
+      progressBarText.textContent = `${attendancePercentage}%`;
+
+      progressBar.appendChild(progressBarFill);
+      progressBar.appendChild(progressBarText);
+      card.appendChild(progressBar);
+
+      // Add card to the container
+      cardsContainer.appendChild(card);
+    });
+  })
+  .catch(error => console.error('Error fetching attendance data:', error));
+  </script>
+</body>
+</html>
