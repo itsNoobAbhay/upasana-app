@@ -1,121 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Faculty - Mulund College of Commerce</title>
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* General Styles */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
-  color: #333;
-}
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
 
-/* Home Button */
-.home-button {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #2c3e50;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1001;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+    /* Home Button */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-.home-button a {
-  color: #fff;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+    .home-button a {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.home-button:hover {
-  background-color: #34495e;
-}
+    .home-button:hover {
+      background-color: #34495e;
+    }
 
-/* Faculty Page */
-.faculty-page {
-  padding: 20px;
-  margin-top: 80px; /* To avoid overlap with the Home button */
-}
+    /* Faculty Page */
+    .faculty-page {
+      padding: 20px;
+      margin-top: 80px;
+    }
 
-.faculty-page h1 {
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 30px;
-}
+    /* Dropdown Header */
+    .dropdown-header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+      margin: 20px auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-/* Faculty Grid */
-.faculty-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
+    .dropdown-header i {
+      transition: transform 0.3s ease;
+    }
 
-/* Faculty Card */
-.faculty-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    /* Faculty Grid (Initially Hidden) */
+    .faculty-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 80%;
+      margin: 20px auto;
+    }
 
-.faculty-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    /* Faculty Card */
+    .faculty-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.faculty-photo {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-}
+    .faculty-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-.faculty-details {
-  text-align: center;
-}
+    .faculty-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
 
-.faculty-details h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #2c3e50;
-}
+    .faculty-details {
+      text-align: center;
+    }
 
-.faculty-details p {
-  margin: 10px 0;
-  font-size: 1rem;
-  color: #666;
-}
+    .faculty-details h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #2c3e50;
+    }
 
-.faculty-details p strong {
-  color: #2c3e50;
-}
+    .faculty-details p {
+      margin: 10px 0;
+      font-size: 1rem;
+      color: #666;
+    }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .faculty-grid {
-    grid-template-columns: 1fr;
-  }
-}
+    .faculty-details p strong {
+      color: #2c3e50;
+    }
+
+    /* Rotate Arrow When Open */
+    .dropdown-header.open i {
+      transform: rotate(180deg);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .faculty-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- Home Button -->
   <div class="home-button">
@@ -125,73 +149,282 @@ body {
   <!-- Faculty Page Content -->
   <div class="faculty-page">
     <h1>Our Faculty</h1>
-    <div class="faculty-grid">
-      <!-- Faculty Card 1 -->
+
+    <!-- Information Technology -->
+
+    <div class="dropdown-header" onclick="toggleDropdown('it')">
+      Information Technology
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faculty-grid" id="it">
       <div class="faculty-card">
-        <img src="images/hiren_sir.png" alt="Faculty Photo" class="faculty-photo">
+        <img src="images/hiren_sir.png" alt="Dr.Hiren Dand" class="faculty-photo">
         <div class="faculty-details">
           <h2>Dr.Hiren Dand</h2>
           <p><strong>Designation:</strong> Co-ordinator</p>
-          <p><strong>Teaching Experience:</strong> 28 Years</p>
+          <p><strong>Experience:</strong> 28 Years</p>
           <p><strong>Email:</strong> hiren.dand@mccmulund.ac.in</p>
         </div>
       </div>
-
-      <!-- Faculty Card 2 -->
       <div class="faculty-card">
-        <img src="images/jyotika_mam.png" alt="Faculty Photo" class="faculty-photo">
+        <img src="images/jyotika_mam.png" alt="Dr.Jyotika Chheda" class="faculty-photo">
         <div class="faculty-details">
           <h2>Dr.Jyotika Chheda</h2>
           <p><strong>Designation:</strong> Assistant Professor</p>
-          <p><strong>Teaching Experience:</strong> 14 Years</p>
+          <p><strong>Experience:</strong> 14 Years</p>
           <p><strong>Email:</strong> jyotika.chheda@mccmulund.ac.in</p>
         </div>
       </div>
-
-      <!-- Faculty Card 3 -->
       <div class="faculty-card">
-        <img src="images/vishal_sir.png" alt="Faculty Photo" class="faculty-photo">
+        <img src="images/vishal_sir.png" alt="Dr.Vishal Borude" class="faculty-photo">
         <div class="faculty-details">
           <h2>Dr.Vishal Borude</h2>
           <p><strong>Designation:</strong> Assistant Professor</p>
-          <p><strong>Teaching Experience:</strong> 10 Years</p>
-          <p><strong>Email:</strong> vishal.borude@mccmulund.ac.in </p>
+          <p><strong>Experience:</strong> 10 Years</p>
+          <p><strong>Email:</strong> vishal.borude@mccmulund.ac.in</p>
         </div>
       </div>
-
-      <!-- Faculty Card 4 -->
       <div class="faculty-card">
-        <img src="images/priti_mam.png" alt="Faculty Photo" class="faculty-photo">
+        <img src="images/priti_mam.png" alt="Dr.Priti Pathak" class="faculty-photo">
         <div class="faculty-details">
           <h2>Dr.Priti Pathak</h2>
-          <p><strong>Designation:</strong>Assistant Professor</p>
-          <p><strong>Teaching Experience:</strong> 13 Years</p>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 13 Years</p>
           <p><strong>Email:</strong> priti.pathak@mccmulund.ac.in</p>
         </div>
       </div>
-
-      <!-- Faculty Card 5 -->
       <div class="faculty-card">
-        <img src="images/ujjwala_mam.png" alt="Faculty Photo" class="faculty-photo">
+        <img src="images/ujjwala_mam.png" alt="Ms.Ujwal Sharma	" class="faculty-photo">
         <div class="faculty-details">
-          <h2>Ms.Ujwal Sharma</h2>
-          <p><strong>Designation:</strong>Assistant Professor</p>
-          <p><strong>Teaching Experience:</strong> 01 Years</p>
-          <p><strong>Email:</strong>ujwala180762@mccmulund.ac.in </p>
+          <h2>Ms.Ujwal Sharma </h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> ujwala180762@mccmulund.ac.in </p>
         </div>
       </div>
-
-      <!-- Faculty Card 6 -->
       <div class="faculty-card">
-        <img src="images/siddhesh_sir.png" alt="Faculty Photo" class="faculty-photo">
+        <img src="images/siddhesh_sir.png" alt="Mr.Siddhesh Gotekar" class="faculty-photo">
         <div class="faculty-details">
-          <h2>Mr.Siddhesh Gotekar</h2>
+          <h2>Mr.Siddhesh Gotekar </h2>
           <p><strong>Designation:</strong> Assistant Professor</p>
-          <p><strong>Teaching Experience:</strong> 01 Years</p>
-          <p><strong>Email:</strong> gotekarsiddhesh@gmail.com</p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> gotekarsiddhesh@gmail.com </p>
         </div>
       </div>
     </div>
+
+    <!-- Computer Science -->
+    <div class="dropdown-header" onclick="toggleDropdown('cs')">
+      Computer Science
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faculty-grid" id="cs">
+      <div class="faculty-card">
+        <img src="images/reena.png" alt="Dr.Reena Nagda	" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Reena Nagda	</h2>
+          <p><strong>Designation:</strong> Co-ordinator	
+          </p>
+          <p><strong>Experience:</strong> - Years</p>
+          <p><strong>Email:</strong> reena.shah@mccmulund.ac.in
+          </p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/vaishnavi.png" alt="Dr. Vaishnavi Assar		" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr. Vaishnavi Assar		</h2>
+          <p><strong>Designation:</strong> Co-ordinator	
+          </p>
+          <p><strong>Experience:</strong> 16 Years</p>
+          <p><strong>Email:</strong> Vaishnavi.assar@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/pooja.png" alt="Ms.Pooja Patil        " class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Pooja Patil          </h2>
+          <p><strong>Designation:</strong> Co-ordinator	
+          </p>
+          <p><strong>Experience:</strong> 14 Years</p>
+          <p><strong>Email:</strong> pooja.patil@mccmulund.ac.in
+          </p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/bhumika_nakum.png" alt="Ms.Bhumika Nakum        " class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Bhumika Nakum          </h2>
+          <p><strong>Designation:</strong> Co-ordinator	
+          </p>
+          <p><strong>Experience:</strong> 09 Years</p>
+          <p><strong>Email:</strong> bhumika.nakum@mccmulund.ac.in
+          </p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/pratiksha.png" alt="Ms.Pratiksha Harwalkar		" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Pratiksha Harwalkar		</h2>
+          <p><strong>Designation:</strong> Co-ordinator	
+          </p>
+          <p><strong>Experience:</strong> 05 Years</p>
+          <p><strong>Email:</strong> pratiksha.harwalkar@mccmulund.ac.in
+          </p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/bhumika_pansare.png" alt="Ms.Bhoomika Pansare		" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Bhoomika Pansare		</h2>
+          <p><strong>Designation:</strong> Co-ordinator	
+          </p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> bhoomika.pansare@mccmulund.ac.in
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown-header" onclick="toggleDropdown('ds')">
+      Data Science
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faculty-grid" id="ds">
+      <div class="faculty-card">
+        <img src="images/hiren_sir.png" alt="Dr.Hiren Dand" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Hiren Dand</h2>
+          <p><strong>Designation:</strong> Co-ordinator</p>
+          <p><strong>Experience:</strong> 28 Years</p>
+          <p><strong>Email:</strong> hiren.dand@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/surabhi_mam.png" alt="Ms.Surbhi Jadhav	" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Surbhi Jadhav	</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> surabhi181970@mccmulund.ac.in
+          </p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/vishal_sir.png" alt="Dr.Vishal Borude" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Vishal Borude</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 10 Years</p>
+          <p><strong>Email:</strong> vishal.borude@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/priti_mam.png" alt="Dr.Priti Pathak" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Priti Pathak</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 13 Years</p>
+          <p><strong>Email:</strong> priti.pathak@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/ujjwala_mam.png" alt="Ms.Ujwal Sharma	" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Ujwal Sharma </h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> ujwala180762@mccmulund.ac.in </p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/siddhesh_sir.png" alt="Mr.Siddhesh Gotekar" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Mr.Siddhesh Gotekar </h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> gotekarsiddhesh@gmail.com </p>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="dropdown-header" onclick="toggleDropdown('ca')">
+      Computer Application
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faculty-grid" id="ca">
+      <div class="faculty-card">
+        <img src="images/hiren_sir.png" alt="Dr.Hiren Dand" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Hiren Dand</h2>
+          <p><strong>Designation:</strong> Co-ordinator</p>
+          <p><strong>Experience:</strong> 28 Years</p>
+          <p><strong>Email:</strong> hiren.dand@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/jyotika_mam.png" alt="Dr.Jyotika Chheda" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Jyotika Chheda</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 14 Years</p>
+          <p><strong>Email:</strong> jyotika.chheda@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/vishal_sir.png" alt="Dr.Vishal Borude" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Vishal Borude</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 10 Years</p>
+          <p><strong>Email:</strong> vishal.borude@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/priti_mam.png" alt="Dr.Priti Pathak" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Dr.Priti Pathak</h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 13 Years</p>
+          <p><strong>Email:</strong> priti.pathak@mccmulund.ac.in</p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/ujjwala_mam.png" alt="Ms.Ujwal Sharma	" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Ms.Ujwal Sharma </h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> ujwala180762@mccmulund.ac.in </p>
+        </div>
+      </div>
+      <div class="faculty-card">
+        <img src="images/siddhesh_sir.png" alt="Mr.Siddhesh Gotekar" class="faculty-photo">
+        <div class="faculty-details">
+          <h2>Mr.Siddhesh Gotekar </h2>
+          <p><strong>Designation:</strong> Assistant Professor</p>
+          <p><strong>Experience:</strong> 01 Years</p>
+          <p><strong>Email:</strong> gotekarsiddhesh@gmail.com </p>
+        </div>
+      </div>
+    
+    </div>
+    
+
   </div>
+
+  <script>
+    function toggleDropdown(sectionId) {
+      const section = document.getElementById(sectionId);
+      const header = section.previousElementSibling;
+
+      section.style.display = section.style.display === "grid" ? "none" : "grid";
+      header.classList.toggle("open");
+    }
+  </script>
 </body>
+
 </html>

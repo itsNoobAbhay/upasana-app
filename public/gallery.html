@@ -44,7 +44,7 @@ body {
 /* Gallery Page */
 .gallery-page {
   padding: 20px;
-  margin-top: 80px; /* To avoid overlap with the Home button */
+  margin-top: 80px;
 }
 
 .gallery-page h1 {
@@ -177,7 +177,7 @@ body {
     <h1>Gallery</h1>
 
     <!-- Image Gallery -->
-    <div class="image-gallery">
+    <div class="image-gallery" id="gallery">
       <div class="gallery-item">
         <img src="images/gallery1.png" alt="Gallery Image 1">
       </div>
@@ -200,14 +200,81 @@ body {
 
     <!-- Add Photos Button  -->
     <div class="add-photos-section">
-        <a href="https://mccmulund.ac.in/newweb/gallery.php">
-      <button id="add-photos-button">View More</button>
-    </a>
+      <button id="add-photos-button">Add Photos</button>
+    </div>
+
+    <!-- View More Button -->
+    <div class="add-photos-section">
+      <a href="https://mccmulund.ac.in/newweb/gallery.php">
+        <button>View More</button>
+      </a>
     </div>
   </div>
 
+  <!-- Modal for Adding Photos -->
+  <div class="modal" id="photo-modal">
+    <div class="modal-content">
+      <span class="close-modal" id="close-modal">&times;</span>
+      <h2>Add Photo</h2>
+      <input type="file" id="image-input" accept="image/*">
+      <input type="password" id="admin-password" placeholder="Enter admin password">
+      <button id="upload-button">Add Photo</button>
+    </div>
+  </div>
 
-  
+  <script>
+    // Get elements
+    const addPhotoBtn = document.getElementById('add-photos-button');
+    const modal = document.getElementById('photo-modal');
+    const closeModal = document.getElementById('close-modal');
+    const uploadBtn = document.getElementById('upload-button');
+    const imageInput = document.getElementById('image-input');
+    const passwordInput = document.getElementById('admin-password');
+    const gallery = document.getElementById('gallery');
 
+    // Show modal
+    addPhotoBtn.addEventListener('click', () => {
+      modal.style.display = 'block';
+    });
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Upload photo
+    uploadBtn.addEventListener('click', () => {
+      const file = imageInput.files[0];
+      const password = passwordInput.value;
+
+      if (!file) {
+        alert('Please select an image.');
+        return;
+      }
+
+      if (password !== 'admin') {
+        alert('Incorrect password.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imgElement = document.createElement('div');
+        imgElement.classList.add('gallery-item');
+        imgElement.innerHTML = `<img src="${e.target.result}" alt="New Image">`;
+        gallery.appendChild(imgElement);
+        modal.style.display = 'none';
+        imageInput.value = '';
+        passwordInput.value = '';
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
 </body>
 </html>
