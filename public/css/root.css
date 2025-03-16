@@ -454,6 +454,28 @@
   .close-modal:hover {
     color: #333;
   }
+  .latest-news a {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Set text color to black */
+  }
+  .latest-news li {
+    list-style: none; /* Optional: Remove bullet points if desired */
+  }
+
+  /* Quick Links Section */
+  .link-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  .link-card i {
+    margin-right: 15px; /* Space between icon and text */
+    font-size: 24px; /* Adjust icon size if needed */
+  }
+  .link-card span {
+    text-align: center; /* Center the text */
+    flex-grow: 1; /* Allow text to take up available space */
+  }
   
   /* Responsive Design */
   @media (max-width: 768px) {

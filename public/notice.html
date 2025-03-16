@@ -53,60 +53,57 @@ body {
   margin-bottom: 30px;
 }
 
-/* Cards Container */
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-/* Notice Card Styles */
-.notice-card {
-  background-color: #fff;
+/* Scrolling Container */
+.scrolling-container {
+  width: 100%;
+  max-width: 600px;
+  height: 300px; /* Adjust height as needed */
+  margin: 0 auto 40px; /* Add margin at the bottom */
+  overflow: hidden;
+  position: relative;
+  background-color: #2c3e50; /* Dark background */
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.notice-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.scrolling-content {
+  position: absolute;
+  top: 100%; /* Start from the bottom */
+  width: 100%;
+  animation: scroll-up 20s linear infinite; /* Adjust animation duration as needed */
 }
 
-.notice-card h2 {
-  color: #2c3e50;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-}
-
-.notice-card p {
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.notice-card .read-more {
-  display: inline-block;
-  background-color: #ff6f61;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
+/* Notice Item */
+.notice-item {
+  display: block;
+  padding: 15px;
   text-decoration: none;
-  font-size: 0.9rem;
+  color: #fff; /* White text */
   transition: background 0.3s ease;
 }
 
-.notice-card .read-more:hover {
-  background-color: #ff4a3d;
+.notice-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+}
+
+.notice-item h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* Animation for Scrolling */
+@keyframes scroll-up {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -100%; /* Scroll to the top */
+  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .cards-container {
-    grid-template-columns: 1fr;
+  .scrolling-container {
+    height: 250px; /* Adjust height for mobile */
   }
 }
   </style>
@@ -114,51 +111,118 @@ body {
 <body>
   <!-- Home Button -->
   <div class="home-button">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="root.html"><i class="fas fa-home"></i> Home</a>
   </div>
 
   <!-- Notice Page Content -->
   <div class="notice-page">
     <h1>Latest Notices</h1>
 
-    <!-- Cards Container -->
-    <div class="cards-container">
-      <!-- Notice Card 1 -->
-      <div class="notice-card">
-        <h2>Admissions Open for 2024 Batch</h2>
-        <p>
-          Admissions for the 2024 batch are now open. Apply online before 30th November 2023.
-        </p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
+    <!-- Scrolling Notices Container -->
+    <div class="scrolling-container">
+      <div class="scrolling-content">
+        <!-- Notice 1 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/ICCReport24-25.pdf" class="notice-item">
+          <h2>ICC Report 2024-25</h2>
+        </a>
 
-      <!-- Notice Card 2 -->
-      <div class="notice-card">
-        <h2>Workshop on Financial Literacy</h2>
-        <p>
-          Join us for a workshop on financial literacy on 15th October 2023. Register now!
-        </p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
+        <!-- Notice 2 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/Adobe%20Scan%20Mar%205,%202025.pdf" class="notice-item">
+          <h2>Department of Mathematics and Statistics</h2>
+        </a>
 
-      <!-- Notice Card 3 -->
-      <div class="notice-card">
-        <h2>College Fest "Commerce Carnival"</h2>
-        <p>
-          The annual college fest "Commerce Carnival" will be held on 20th November 2023. Stay tuned!
-        </p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
+        <!-- Notice 3 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/Balance%20Fees%202024-2025." class="notice-item">
+          <h2>Arrears of Fees 2024-2025</h2>
+        </a>
 
-      <!-- Notice Card 4 -->
-      <div class="notice-card">
-        <h2>Guest Lecture by Industry Expert</h2>
-        <p>
-          A guest lecture by Mr. Rajesh Sharma, CEO of FinCorp, will be held on 25th October 2023.
-        </p>
-        <a href="#" class="read-more">Read More</a>
+        <!-- Notice 4 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/SKM_550i24121012040.pdf" class="notice-item">
+          <h2>NOTICE-CONVOCATION DEGREE & SFC 2023-24</h2>
+        </a>
+
+        <!-- Notice 5 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/CONVOCATION%20LIST-B.COM+M.COM%20ADV%20ACCT-2023-24.xlsx" class="notice-item">
+          <h2>LIST OF B.COM+M.COM ADV ACCT 2023-24 CONVOCATION</h2>
+        </a>
+
+        <!-- Notice 6 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/Annual%20Athletic%20Meet%202024.jpeg" class="notice-item">
+          <h2>Annual Athletic Meet 2024</h2>
+        </a>
+
+        <!-- Notice 7 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/New%20Doc%2012-10-2024%2012.25.pdf" class="notice-item">
+          <h2>NOTICE-DEGREE & SFC COURSES UG & PG 2023-24 BATCH</h2>
+        </a>
+
+        <!-- Notice 8 -->
+        <a href="#" class="notice-item">
+          <h2>Scholarship Application Deadline</h2>
+        </a>
+
+        <!-- Notice 9 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/Revaluation%20form%20(1).pdf" class="notice-item">
+          <h2>REVALUATION & PHOTOCOPY FORM FOR ALL COURSES</h2>
+        </a>
+
+        <!-- Notice 10 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/PAPER%20POSTPONED%20NOTICE%20MCOM%20.pdf" class="notice-item">
+          <h2>EXAM POSTPONED NOTICE MCOM</h2>
+        </a>
+      </div>
+    </div>
+
+    <!-- Examinations Section -->
+    <h1>Examinations</h1>
+
+    <!-- Scrolling Examinations Container -->
+    <div class="scrolling-container">
+      <div class="scrolling-content">
+        <!-- Examination 1 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/FYBCOM-SEM-1-NEP-RESULT-JAN%2024.pdf" class="notice-item">
+          <h2>FYBCom Sem 1 NEP Results January 2024</h2>
+        </a>
+
+        <!-- Examination 2 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/1716024850327.jpg" class="notice-item">
+          <h2>PHOTOCOPY / REVALUATION B.COM/BCAF/BCBI/BCFM/BMS/BAMMC/BBA/M.COM ACCOUNTANCY/M.COMBUSINESS MANAGEMENT & M.COM BANKING FINANCE</h2>
+        </a>
+
+        <!-- Examination 3 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/IT%20CS.jpg" class="notice-item">
+          <h2>PHOTOCOPY / REVALUATION B.SC.CS,BSCIT,BCA,BSC DS & MSC FINANCE          </h2>
+        </a>
+
+        <!-- Examination 4 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/M.COM%20SEM-1-NEP-REVAL%20AND%20PHOTO.pdf" class="notice-item">
+          <h2>REVALUATION & PHOTOCOPY-M.COM SEM-1 (NEP STUDENTS) 2023-24</h2>
+        </a>
+
+        <!-- Examination 5 -->
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/BSCCS%20SEM%20VI%20REGULAR%20AND%20ATKT%20AUTONOMOUS.pdf" class="notice-item">
+          <h2>Time Table BSCCS Semester VI Regular and atkt Autonomous March- April 2025</h2>
+        </a>
+
       </div>
     </div>
   </div>
+
+<script>
+  // Pause scrolling on hover
+const scrollingContainers = document.querySelectorAll('.scrolling-container');
+
+scrollingContainers.forEach(container => {
+  const scrollingContent = container.querySelector('.scrolling-content');
+
+  container.addEventListener('mouseenter', () => {
+    scrollingContent.style.animationPlayState = 'paused';
+  });
+
+  container.addEventListener('mouseleave', () => {
+    scrollingContent.style.animationPlayState = 'running';
+  });
+});
+</script>
 </body>
 </html>
