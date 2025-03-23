@@ -1,175 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery - Mulund College of Commerce</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* General Styles */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
-  color: #333;
-}
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
 
-/* Home Button */
-.home-button {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #2c3e50;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1001;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+    /* Home Button */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-.home-button a {
-  color: #fff;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+    .home-button a {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.home-button:hover {
-  background-color: #34495e;
-}
+    .home-button:hover {
+      background-color: #34495e;
+    }
 
-/* Gallery Page */
-.gallery-page {
-  padding: 20px;
-  margin-top: 80px;
-}
+    /* Gallery Page */
+    .gallery-page {
+      padding: 20px;
+      margin-top: 80px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-.gallery-page h1 {
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 30px;
-}
+    .gallery-page h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
 
-/* Image Gallery */
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
+    /* Image Gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
 
-.gallery-item {
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      aspect-ratio: 4/3;
+    }
 
-.gallery-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: filter 0.3s ease;
+    }
 
-/* Add Photos Section */
-.add-photos-section {
-  text-align: center;
-  margin-top: 30px;
-}
+    .gallery-item:hover img {
+      filter: brightness(0.9);
+    }
 
-.add-photos-section button {
-  background-color: #ff6f61;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease;
-}
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(255, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
 
-.add-photos-section button:hover {
-  background-color: #ff4a3d;
-}
+    .admin-mode .delete-btn {
+      display: flex;
+    }
 
-/* Add Photos Modal */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1002;
-}
+    .delete-btn:hover {
+      background-color: rgba(255, 0, 0, 0.9);
+    }
 
-.modal-content {
-  background-color: #fff;
-  width: 300px;
-  padding: 20px;
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+    /* Add Photos Section */
+    .admin-controls {
+      text-align: center;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
 
-.modal-content h2 {
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
+    .admin-controls button,
+    .mode-toggle button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-.modal-content input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+    .admin-controls button:hover,
+    .mode-toggle button:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+    }
 
-.modal-content button {
-  width: 100%;
-  padding: 10px;
-  background-color: #ff6f61;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    .admin-controls button.add-btn {
+      background-color: #2ecc71;
+    }
 
-.modal-content button:hover {
-  background-color: #ff4a3d;
-}
+    .admin-controls button.add-btn:hover {
+      background-color: #27ae60;
+    }
 
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
-}
+    /* View More Button */
+    .view-more-section {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 50px;
+    }
 
-.close-modal:hover {
-  color: #333;
-}
-    </style>
+    .view-more-section button {
+      background-color: #ff6f61;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .view-more-section button:hover {
+      background-color: #ff4a3d;
+      transform: translateY(-2px);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1002;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      width: 90%;
+      max-width: 400px;
+      padding: 30px;
+      border-radius: 15px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+      font-size: 1.8rem;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .modal-content input:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+
+    .modal-content button:hover {
+      background-color: #2980b9;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+      transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+      color: #333;
+    }
+
+    /* Mode Toggle */
+    .mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+    }
+
+    .mode-toggle button {
+      background-color: #9b59b6;
+    }
+
+    .mode-toggle button:hover {
+      background-color: #8e44ad;
+    }
+
+    .admin-mode-indicator {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background-color: #e74c3c;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      display: none;
+      z-index: 1001;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .gallery-page {
+        padding: 15px;
+        margin-top: 70px;
+      }
+
+      .gallery-page h1 {
+        font-size: 2rem;
+      }
+
+      .image-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        padding: 10px;
+      }
+
+      .home-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+
+      .mode-toggle {
+        top: 20px;
+        right: 20px;
+      }
+
+      .mode-toggle button,
+      .admin-controls button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+
+      .admin-mode-indicator {
+        top: 60px;
+        right: 20px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-page h1 {
+        font-size: 1.8rem;
+      }
+
+      .image-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px;
+      }
+
+      .delete-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+      }
+    }
+
+    /* Loading animation */
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 5px solid #3498db;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Image zoom effect */
+    .gallery-item.zoom-effect {
+      overflow: hidden;
+    }
+
+    .gallery-item.zoom-effect img {
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item.zoom-effect:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Empty gallery message */
+    .empty-gallery {
+      text-align: center;
+      padding: 40px;
+      font-size: 1.2rem;
+      color: #7f8c8d;
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
   <!-- Home Button -->
   <div class="home-button">
     <a href="root.html"><i class="fas fa-home"></i> Home</a>
+  </div>
+
+  <!-- Mode Toggle Button -->
+  <div class="mode-toggle">
+    <button id="mode-toggle-btn">Switch to Admin Mode</button>
+  </div>
+
+  <!-- Admin Mode Indicator -->
+  <div class="admin-mode-indicator" id="admin-indicator">
+    Admin Mode
   </div>
 
   <!-- Gallery Page Content -->
@@ -177,36 +413,49 @@ body {
     <h1>Gallery</h1>
 
     <!-- Image Gallery -->
+    <div class="empty-gallery" id="empty-gallery">
+      No images to display. Add some images to get started.
+    </div>
+
     <div class="image-gallery" id="gallery">
-      <div class="gallery-item">
+      <!-- Default images -->
+      <div class="gallery-item zoom-effect">
         <img src="images/gallery1.png" alt="Gallery Image 1">
+        <button class="delete-btn" data-default="true"><i class="fas fa-times"></i></button>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item zoom-effect">
         <img src="images/gallery2.png" alt="Gallery Image 2">
+        <button class="delete-btn" data-default="true"><i class="fas fa-times"></i></button>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item zoom-effect">
         <img src="images/gallery3.png" alt="Gallery Image 3">
+        <button class="delete-btn" data-default="true"><i class="fas fa-times"></i></button>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item zoom-effect">
         <img src="images/gallery4.png" alt="Gallery Image 4">
+        <button class="delete-btn" data-default="true"><i class="fas fa-times"></i></button>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item zoom-effect">
         <img src="images/gallery5.png" alt="Gallery Image 5">
+        <button class="delete-btn" data-default="true"><i class="fas fa-times"></i></button>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item zoom-effect">
         <img src="images/gallery6.png" alt="Gallery Image 6">
+        <button class="delete-btn" data-default="true"><i class="fas fa-times"></i></button>
       </div>
     </div>
 
-    <!-- Add Photos Button  -->
-    <div class="add-photos-section">
-      <button id="add-photos-button">Add Photos</button>
+    <div class="loader" id="gallery-loader"></div>
+
+    <!-- Admin Controls -->
+    <div class="admin-controls" id="admin-controls" style="display: none;">
+      <button class="add-btn" id="add-photos-button"><i class="fas fa-plus"></i> Add Photos</button>
     </div>
 
     <!-- View More Button -->
-    <div class="add-photos-section">
+    <div class="view-more-section">
       <a href="https://mccmulund.ac.in/newweb/gallery.php">
-        <button>View More</button>
+        <button><i class="fas fa-images"></i> View More</button>
       </a>
     </div>
   </div>
@@ -217,64 +466,253 @@ body {
       <span class="close-modal" id="close-modal">&times;</span>
       <h2>Add Photo</h2>
       <input type="file" id="image-input" accept="image/*">
+      <button id="upload-button">Upload Photo</button>
+    </div>
+  </div>
+
+  <!-- Modal for Admin Login -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <span class="close-modal" id="close-login-modal">&times;</span>
+      <h2>Admin Login</h2>
       <input type="password" id="admin-password" placeholder="Enter admin password">
-      <button id="upload-button">Add Photo</button>
+      <button id="login-button">Login</button>
     </div>
   </div>
 
   <script>
     // Get elements
     const addPhotoBtn = document.getElementById('add-photos-button');
-    const modal = document.getElementById('photo-modal');
-    const closeModal = document.getElementById('close-modal');
+    const photoModal = document.getElementById('photo-modal');
+    const loginModal = document.getElementById('login-modal');
+    const closePhotoModal = document.getElementById('close-modal');
+    const closeLoginModal = document.getElementById('close-login-modal');
     const uploadBtn = document.getElementById('upload-button');
+    const loginBtn = document.getElementById('login-button');
     const imageInput = document.getElementById('image-input');
     const passwordInput = document.getElementById('admin-password');
     const gallery = document.getElementById('gallery');
+    const modeToggleBtn = document.getElementById('mode-toggle-btn');
+    const adminControls = document.getElementById('admin-controls');
+    const adminIndicator = document.getElementById('admin-indicator');
+    const galleryLoader = document.getElementById('gallery-loader');
+    const emptyGallery = document.getElementById('empty-gallery');
 
-    // Show modal
+    // Admin state
+    let isAdminMode = false;
+    const ADMIN_PASSWORD = 'admin';
+
+    // Default images array
+    const defaultImages = [
+      { src: "images/gallery1.png", id: "default-1", default: true },
+      { src: "images/gallery2.png", id: "default-2", default: true },
+      { src: "images/gallery3.png", id: "default-3", default: true },
+      { src: "images/gallery4.png", id: "default-4", default: true }
+    ];
+
+    // Initialize gallery
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize default images in localStorage if first visit
+      initializeDefaultImages();
+
+      // Clear the gallery before loading images
+      gallery.innerHTML = '';
+
+      // Load all images from localStorage
+      loadImages();
+      checkGalleryEmpty();
+    });
+
+    // Initialize default images in localStorage if not already present
+    function initializeDefaultImages() {
+      // Get existing images from localStorage
+      let storedImages = JSON.parse(localStorage.getItem('galleryImages')) || [];
+      let defaultImagesStatus = JSON.parse(localStorage.getItem('defaultImagesInitialized')) || false;
+
+      // Only initialize default images if not already done
+      if (!defaultImagesStatus) {
+        // Merge the default images with any existing custom images
+        let allImages = [...defaultImages, ...storedImages];
+        localStorage.setItem('galleryImages', JSON.stringify(allImages));
+        localStorage.setItem('defaultImagesInitialized', JSON.stringify(true));
+      }
+    }
+
+    // Toggle between admin and user mode
+    modeToggleBtn.addEventListener('click', () => {
+      if (isAdminMode) {
+        // Switch to user mode
+        exitAdminMode();
+      } else {
+        // Show login modal
+        loginModal.style.display = 'block';
+      }
+    });
+
+    // Login button
+    loginBtn.addEventListener('click', () => {
+      const password = passwordInput.value;
+
+      if (password === ADMIN_PASSWORD) {
+        enterAdminMode();
+        loginModal.style.display = 'none';
+        passwordInput.value = '';
+      } else {
+        alert('Incorrect password. Please try again.');
+      }
+    });
+
+    // Enter admin mode
+    function enterAdminMode() {
+      isAdminMode = true;
+      document.body.classList.add('admin-mode');
+      adminControls.style.display = 'flex';
+      adminIndicator.style.display = 'block';
+      modeToggleBtn.textContent = 'Switch to User Mode';
+      modeToggleBtn.style.backgroundColor = '#e74c3c';
+    }
+
+    // Exit admin mode
+    function exitAdminMode() {
+      isAdminMode = false;
+      document.body.classList.remove('admin-mode');
+      adminControls.style.display = 'none';
+      adminIndicator.style.display = 'none';
+      modeToggleBtn.textContent = 'Switch to Admin Mode';
+      modeToggleBtn.style.backgroundColor = '#9b59b6';
+    }
+
+    // Show add photo modal
     addPhotoBtn.addEventListener('click', () => {
-      modal.style.display = 'block';
+      photoModal.style.display = 'block';
     });
 
-    // Close modal
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
+    // Close modals
+    closePhotoModal.addEventListener('click', () => {
+      photoModal.style.display = 'none';
     });
 
+    closeLoginModal.addEventListener('click', () => {
+      loginModal.style.display = 'none';
+    });
+
+    // Close modals when clicking outside
     window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
+      if (e.target === photoModal) {
+        photoModal.style.display = 'none';
+      }
+      if (e.target === loginModal) {
+        loginModal.style.display = 'none';
       }
     });
 
     // Upload photo
     uploadBtn.addEventListener('click', () => {
       const file = imageInput.files[0];
-      const password = passwordInput.value;
 
       if (!file) {
         alert('Please select an image.');
         return;
       }
 
-      if (password !== 'admin') {
-        alert('Incorrect password.');
-        return;
-      }
+      // Show loader
+      galleryLoader.style.display = 'block';
 
       const reader = new FileReader();
       reader.onload = function (e) {
-        const imgElement = document.createElement('div');
-        imgElement.classList.add('gallery-item');
-        imgElement.innerHTML = `<img src="${e.target.result}" alt="New Image">`;
-        gallery.appendChild(imgElement);
-        modal.style.display = 'none';
+        const newImage = {
+          src: e.target.result,
+          id: 'custom-' + Date.now(), // Unique ID for the image
+          default: false
+        };
+
+        // Get existing images and add the new one
+        const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+        images.push(newImage);
+        localStorage.setItem('galleryImages', JSON.stringify(images));
+
+        // Add the new image to gallery
+        displayImage(newImage);
+
+        // Hide loader and modal
+        galleryLoader.style.display = 'none';
+        photoModal.style.display = 'none';
         imageInput.value = '';
-        passwordInput.value = '';
+
+        // Check if gallery is empty
+        checkGalleryEmpty();
       };
+
       reader.readAsDataURL(file);
     });
+
+    // Load stored images
+    function loadImages() {
+      const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+
+      // Show loader
+      if (images.length > 0) {
+        galleryLoader.style.display = 'block';
+      }
+
+      // Process each image
+      let loaded = 0;
+      images.forEach(img => {
+        displayImage(img);
+        loaded++;
+
+        // Hide loader when all images are loaded
+        if (loaded === images.length) {
+          galleryLoader.style.display = 'none';
+        }
+      });
+    }
+
+    // Display image in the gallery
+    function displayImage(imgData) {
+      const imgElement = document.createElement('div');
+      imgElement.classList.add('gallery-item', 'zoom-effect');
+      imgElement.setAttribute('data-id', imgData.id);
+
+      imgElement.innerHTML = `
+    <img src="${imgData.src}" alt="Gallery Image">
+    <button class="delete-btn" data-default="${imgData.default}"><i class="fas fa-times"></i></button>
+  `;
+
+      // Add delete functionality
+      const deleteBtn = imgElement.querySelector('.delete-btn');
+      deleteBtn.addEventListener('click', () => {
+        if (isAdminMode) {
+          // Remove the image from the DOM
+          imgElement.remove();
+
+          // Remove from localStorage regardless of whether it's default or custom
+          removeImage(imgData.id);
+
+          // Check if gallery is empty
+          checkGalleryEmpty();
+        }
+      });
+
+      gallery.appendChild(imgElement);
+    }
+
+    // Remove image from localStorage
+    function removeImage(imgId) {
+      let images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+      images = images.filter(img => img.id !== imgId);
+      localStorage.setItem('galleryImages', JSON.stringify(images));
+    }
+
+    // Check if the gallery is empty
+    function checkGalleryEmpty() {
+      if (gallery.children.length === 0) {
+        emptyGallery.style.display = 'block';
+      } else {
+        emptyGallery.style.display = 'none';
+      }
+    }
   </script>
 </body>
+
 </html>

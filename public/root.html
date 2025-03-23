@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="/css/root.css">
 </head>
+
 <body>
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
@@ -62,24 +64,33 @@
 
     <div class="marquee-section">
       <marquee behavior="scroll" direction="left" scrollamount="5">
-        <i class="fas fa-bullhorn"></i> 
-        <a href="https://mccmulund.ac.in/newweb/files/uploads/Girl%20freeship%20NOTICE%20FOR%20FREESCH%202024-25A.pdf" target="_blank">Girl's Freeship Notice 2024-25</a> &nbsp;&nbsp;&nbsp;
-        <i class="fas fa-calendar-alt"></i> 
-        <a href="https://mccmulund.ac.in/newweb/files/uploads/Girl%20Freeship%20%20Form.pdf" target="_blank">Girl's Freeship Form</a> &nbsp;&nbsp;&nbsp;
-        <i class="fas fa-bell"></i> 
-        <a href="https://mccmulund.ac.in/newweb/files/uploads/Ph.D.%20Student%20Admission%20Notice%202023-2024.pdf" target="_blank">Ph.D Admission Notice 23-24</a>
+        <i class="fas fa-bullhorn"></i>
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/Girl%20freeship%20NOTICE%20FOR%20FREESCH%202024-25A.pdf"
+          target="_blank">Girl's Freeship Notice 2024-25</a> &nbsp;&nbsp;&nbsp;
+        <i class="fas fa-calendar-alt"></i>
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/Girl%20Freeship%20%20Form.pdf" target="_blank">Girl's
+          Freeship Form</a> &nbsp;&nbsp;&nbsp;
+        <i class="fas fa-bell"></i>
+        <a href="https://mccmulund.ac.in/newweb/files/uploads/Ph.D.%20Student%20Admission%20Notice%202023-2024.pdf"
+          target="_blank">Ph.D Admission Notice 23-24</a>
       </marquee>
     </div>
-    
+
     <!-- Home Page Content -->
     <div class="home-page">
       <!-- Latest News Section -->
       <div class="section latest-news" id="latest-news">
         <h2><i class="fas fa-newspaper"></i> Latest News</h2>
         <ul>
-          <a href="https://mccmulund.ac.in/newweb/files/uploads/Notice%20for%20Scholarship012.pdf"><li>GUIDELINES Scholarship 2023-24</li></a>
-          <a href="https://mccmulund.ac.in/newweb/files/uploads/Notice%201A.docx.pdf"><li>NOTICE FOR SCHOLARSHIP DEGREE/SFC FOR YEAR 2023-24</li></a>
-          <a href="https://mccmulund.ac.in/newweb/files/uploads/FYJC%20Online%20Addmission%20Notice%202024.pdf"><li>FYJC Online admission</li></a>
+          <a href="https://mccmulund.ac.in/newweb/files/uploads/Notice%20for%20Scholarship012.pdf">
+            <li>GUIDELINES Scholarship 2023-24</li>
+          </a>
+          <a href="https://mccmulund.ac.in/newweb/files/uploads/Notice%201A.docx.pdf">
+            <li>NOTICE FOR SCHOLARSHIP DEGREE/SFC FOR YEAR 2023-24</li>
+          </a>
+          <a href="https://mccmulund.ac.in/newweb/files/uploads/FYJC%20Online%20Addmission%20Notice%202024.pdf">
+            <li>FYJC Online admission</li>
+          </a>
         </ul>
       </div>
 
@@ -145,6 +156,9 @@
     </div>
   </div>
 
+
+
+
   <!-- Login/Register Modal -->
   <div class="modal" id="login-modal">
     <div class="modal-content">
@@ -165,6 +179,9 @@
       </form>
     </div>
   </div>
+
+
+
 
   <script>
     // JavaScript for Sidebar Functionality
@@ -252,10 +269,10 @@
         // Mark this user as logged in
         users[userIndex].isLoggedIn = true;
         localStorage.setItem('users', JSON.stringify(users));
-        
+
         // Store current logged in user separately
         localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
-        
+
         // Hide login button and show user info
         loginButton.style.display = 'none';
         userInfo.style.display = 'flex';
@@ -284,7 +301,7 @@
         const newUser = { name, email, password, isLoggedIn: true };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
-        
+
         // Store current logged in user separately
         localStorage.setItem('currentUser', JSON.stringify(newUser));
 
@@ -303,18 +320,18 @@
       // Update the logged in status in users array
       const users = JSON.parse(localStorage.getItem('users')) || [];
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      
+
       if (currentUser) {
         const userIndex = users.findIndex(u => u.email === currentUser.email);
         if (userIndex !== -1) {
           users[userIndex].isLoggedIn = false;
           localStorage.setItem('users', JSON.stringify(users));
         }
-        
+
         // Remove current user
         localStorage.removeItem('currentUser');
       }
-      
+
       // Hide user info and show login button
       userInfo.style.display = 'none';
       loginButton.style.display = 'flex';
@@ -333,15 +350,15 @@
     });
 
     // JavaScript for Explore More Button
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const exploreMoreBtn = document.getElementById('explore-more-btn');
-      
+
       if (exploreMoreBtn) {
-        exploreMoreBtn.addEventListener('click', function(e) {
+        exploreMoreBtn.addEventListener('click', function (e) {
           console.log("hehe")
           e.preventDefault(); // Prevent default anchor behavior
           const latestNewsSection = document.getElementById('latest-news');
-          
+
           if (latestNewsSection) {
             latestNewsSection.scrollIntoView({ behavior: 'smooth' });
           }
@@ -350,4 +367,5 @@
     });
   </script>
 </body>
+
 </html>
